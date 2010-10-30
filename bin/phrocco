@@ -3,7 +3,7 @@ PHP=`which php`
 exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 <?php
 
-
+require_once("phrocco/Phrocco.php");
 
 if(isset($argv)){
   ob_end_clean();

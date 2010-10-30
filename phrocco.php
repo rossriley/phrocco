@@ -3,7 +3,7 @@ PHP=`which php`
 exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 <?php
 require_once("lib/markdown.php");
-require_once("lib/Pygment.php");
+require_once("lib/pygment.php");
 
 
 class Phrocco {
@@ -17,7 +17,7 @@ class Phrocco {
   
   public function __construct($language, $file) {
     $this->adapter = ucfirst($language)."Adapter";
-    require_once(__DIR__."/adapters/".$this->adapter.".php");
+    require_once(__DIR__."/lib/adapters/".$this->adapter.".php");
     $this->adapter = new $this->adapter;
     $this->file = $file;
     $this->title = basename($this->file);
