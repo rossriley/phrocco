@@ -16,9 +16,9 @@ class Pygment {
         0 => array("pipe", "r"),  // stdin 
         1 => array("pipe", "w"),  // stdout 
     ); 
-    $process = proc_open("pygmentize -l $language", $descriptorspec, $pipes); 
+    $process = proc_open("pygmentize -l $language -f html", $descriptorspec, $pipes); 
     if (is_resource($process)) { 
-      fwrite($pipes[0], escapeshellarg($code)); 
+      fwrite($pipes[0], ($code)); 
       fclose($pipes[0]); 
       while($s= fgets($pipes[1], 1024)) { 
         // read from the pipe 
@@ -26,7 +26,6 @@ class Pygment {
       } 
       fclose($pipes[1]); 
     } 
-    die($parsed_code);
     return $parsed_code;
   }
   
