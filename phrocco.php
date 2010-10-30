@@ -13,6 +13,7 @@ class Phrocco {
   public $title;
   public $file;
   public $adapter;
+  public $output_file;
 
   
   public function __construct($language, $file) {
@@ -39,7 +40,7 @@ class Phrocco {
   	if(!include($view_file)) throw new Exception("PHP Error in $view_file");
   	$content = ob_get_contents();
 		ob_end_clean();
-  	return $content;
+		file_put_contents($this->output_file, $content);    
   }
 
 
@@ -68,14 +69,15 @@ class PhroccoGroup {
     "o"   => false
   );
   public $options = array();
+  public $group = array();
   
   public function __construct($options) {
+    $sources = array();
     $this->options = $options + $this->defaults;
     $dir_iterator = new PhroccoIterator($this->options["i"]);
     $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
     foreach ($iterator as $file) {
       if(!$iterator->isDot() && in_array($iterator->getExtension(), $this->extensions[$this->options["l"]])) {
-        echo "*** Processing: ".$file->getBasename()."\n";
         $base_path = $this->options["i"];
         $rpath = str_replace($base_path, "",$file->getPath());
         $phrocco = new Phrocco($this->options["l"], $file);
@@ -85,8 +87,17 @@ class PhroccoGroup {
         if(!is_writable($output_dir)) @mkdir($output_dir, 0777, true);
         if(!is_writable($output_dir)) throw new Exception("Invalid Output Directory - Couldn't Create Because of Permissions");
         $file_out = $output_dir."/".$file->getBasename($iterator->getExtension())."html";
-        file_put_contents($file_out, $phrocco->render());
+        $phrocco->output_file = $file_out;
+        $this->group[$file->getBasename()] = $phrocco;
+        $this->sources[] = array("url"=>str_replace($base_path, "", $file_out), "name"=>$file);
       }
     }
+    foreach($this->group as $name=>$file) {
+      $file->sources = $this->sources;
+      echo "*** Processing: ".$name."\n";
+      
+      $file->render();
+    }
+    
   }
 }

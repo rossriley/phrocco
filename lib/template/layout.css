@@ -112,7 +112,6 @@ table td {
     vertical-align: top;
     background: #f5f5ff;
     border-left: 1px solid #e5e5ee;
-    white-space:pre-line;
   }
     pre, tt, code {
       font-size: 12px; line-height: 18px;
@@ -185,3 +184,7 @@ body .vc { color: #19469D }                     /* Name.Variable.Class */
 body .vg { color: #19469D }                     /* Name.Variable.Global */
 body .vi { color: #19469D }                     /* Name.Variable.Instance */
 body .il { color: #666666 }                     /* Literal.Number.Integer.Long */
+
+
+/********** PHP Comment Additions ********/
+td.docs .docparam {color:#DB251A;font-weight:bold;}

@@ -18,8 +18,8 @@
         <div id="jump_wrapper">
           <div id="jump_page">
             <?foreach($sources as $source):?>
-              <a class="source" href="<?=$source->url?>">
-                <?=$source->name?>
+              <a class="source" href="<?=$source["url"]?>">
+                <?=$source["name"]?>
               </a>
             <?endforeach?>
           </div>
