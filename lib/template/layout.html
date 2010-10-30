@@ -18,7 +18,7 @@
         <div id="jump_wrapper">
           <div id="jump_page">
             <?foreach($sources as $source):?>
-              <a class="source" href="<?=$source["url"]?>">
+              <a class="source" href="<?=str_repeat("../",substr_count($path, "/"))?><?=$source["url"]?>">
                 <?=$source["name"]?>
               </a>
             <?endforeach?>
@@ -39,7 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <?foreach($sections["docs"] as $count=>$section):?>
+        <?foreach((array)$sections["docs"] as $count=>$section):?>
           <tr id="section-<?=$count?>">
             <td class="docs">
               <div class="pilwrap">

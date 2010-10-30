@@ -14,6 +14,7 @@ class Phrocco {
   public $file;
   public $adapter;
   public $output_file;
+  public $path;
 
   
   public function __construct($language, $file) {
@@ -88,8 +89,9 @@ class PhroccoGroup {
         if(!is_writable($output_dir)) throw new Exception("Invalid Output Directory - Couldn't Create Because of Permissions");
         $file_out = $output_dir."/".$file->getBasename($iterator->getExtension())."html";
         $phrocco->output_file = $file_out;
+        $phrocco->path = "./".$iterator->getSubPath();
         $this->group[$file->getBasename()] = $phrocco;
-        $this->sources[] = array("url"=>str_replace($base_path, "", $file_out), "name"=>$file);
+        $this->sources[] = array("url"=>$iterator->getSubPath()."/".$file->getBasename($iterator->getExtension())."html", "name"=>$file->getBasename());
       }
     }
     foreach($this->group as $name=>$file) {

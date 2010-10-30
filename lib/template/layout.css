@@ -55,12 +55,17 @@ h1, h2, h3, h4, h5, h6 {
     #jump_page {
       padding: 5px 0 3px;
       margin: 0 0 25px 25px;
+      overflow:hidden;
     }
       #jump_page .source {
         display: block;
         padding: 5px 10px;
         text-decoration: none;
         border-top: 1px solid #eee;
+        float:left;
+        min-width:180px;
+        text-align:left;
+        text-transform:none;
       }
         #jump_page .source:hover {
           background: #f5f5ff;
