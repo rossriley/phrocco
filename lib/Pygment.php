@@ -5,8 +5,8 @@ class Pygment {
   
   
   public function pygmentize($language, $code) {
-    $res = shell_exec("pygmentize");
-    if($res !==NULL) return $this->local_pygment($language, $code);
+    $res = shell_exec("pygmentize 2>&1 1> /dev/null");
+    if($res ==NULL) return $this->local_pygment($language, $code);
     else return $this->webservice($language, $code);
   }
   
@@ -18,7 +18,7 @@ class Pygment {
     ); 
     $process = proc_open("pygmentize -l $language", $descriptorspec, $pipes); 
     if (is_resource($process)) { 
-      fwrite($pipes[0], $code); 
+      fwrite($pipes[0], escapeshellarg($code)); 
       fclose($pipes[0]); 
       while($s= fgets($pipes[1], 1024)) { 
         // read from the pipe 
@@ -26,6 +26,7 @@ class Pygment {
       } 
       fclose($pipes[1]); 
     } 
+    die($parsed_code);
     return $parsed_code;
   }
   
