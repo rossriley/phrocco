@@ -4,10 +4,14 @@ exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 <?php
 
 require_once("phrocco/Phrocco.php");
+ini_set("error_reporting",247);
 
 if(isset($argv)){
   ob_end_clean();
   $args = getopt("l:i:o:");
+  if(!$args["i"]) {echo "** Error: No input file or directory specified\n";die();}
+  if(!$args["o"]) echo "** No output directory specified, outputting to current directory\n";
+
   if(substr($args["i"],0,1!="/")) $args["i"] = getcwd()."/".$args["i"];
   if(substr($args["o"],0,1!="/")) $args["o"] = getcwd()."/".$args["o"];
   $group = new PhroccoGroup($args);

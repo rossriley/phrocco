@@ -32,8 +32,8 @@ class Phrocco {
   public function render() {
     ob_start();
     $this->parse();
-    $view_file = __DIR__."/template/layout.html";
-    $this->style = file_get_contents(__DIR__."/template/layout.css");
+    $view_file = __DIR__."/lib/template/layout.html";
+    $this->style = file_get_contents(__DIR__."/lib/template/layout.css");
     extract((array)$this);
   	if(!is_readable($view_file)) throw new Exception("Unable to find Template File");
   	if(!include($view_file)) throw new Exception("PHP Error in $view_file");
@@ -70,7 +70,6 @@ class PhroccoGroup {
   public $options = array();
   
   public function __construct($options) {
-    ini_set("error_reporting",247);
     $this->options = $options + $this->defaults;
     $dir_iterator = new PhroccoIterator($this->options["i"]);
     $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);

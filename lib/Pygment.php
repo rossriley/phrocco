@@ -5,7 +5,7 @@ class Pygment {
   
   
   public function pygmentize($language, $code) {
-    $res = shell_exec("pygmentizez");
+    $res = shell_exec("pygmentize");
     if($res !==NULL) return $this->local_pygment($language, $code);
     else return $this->webservice($language, $code);
   }
@@ -47,7 +47,7 @@ class Pygment {
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch,CURLOPT_POST,count($fields));
     curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
- 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     //execute post 
     $result = curl_exec($ch);
 
