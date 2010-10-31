@@ -2,7 +2,6 @@
 
 
 class Pygment {
-  ``
   
   public function pygmentize($language, $code) {
     $res = shell_exec("pygmentize 2>&1 1> /dev/null");

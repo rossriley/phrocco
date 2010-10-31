@@ -36,16 +36,24 @@ class PhpAdapter {
     $file = file_get_contents($file);
     $code = "";
     $all_matches = array();
+    $prev_token = false;
     foreach(token_get_all($file) as $tok) {
       if(is_array($tok)) {
         if(in_array(token_name($tok[0]), $this->comment_tokens)) {
-          $tok[1] = str_replace("\t","  ",$tok[1]);
-          $all_matches[]=preg_replace($this->comment_blocks,"$1", $tok[1]);
-          $code.="\n//CODEBLOCK\n";
+          if(token_name($prev_tok[0])=="T_COMMENT" && token_name($tok[0])=="T_COMMENT") {
+            $last = array_pop($all_matches);
+            $tok[1] = str_replace("\t","  ",$tok[1]);
+            $all_matches[]=$last.preg_replace($this->comment_blocks,"$1", $tok[1]);
+          } else {
+            $tok[1] = str_replace("\t","  ",$tok[1]);
+            $all_matches[]=preg_replace($this->comment_blocks,"$1", $tok[1]);
+            $code.="\n//CODEBLOCK\n";
+          }
         } else {
           $code.=$tok[1];
         }                  
-      } else $code.=$tok;     
+      } else $code.=$tok;
+      $prev_token = $tok;     
     }
 
     // Passes code onto pygmentize to add syntax highlighting
