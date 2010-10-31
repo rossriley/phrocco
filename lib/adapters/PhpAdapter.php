@@ -18,7 +18,8 @@ class PhpAdapter {
   );
 
   
-  // Looks for phpdoc parameters eg: @author, @param, @return
+  public $comment_expr  = "#//([^\n]*)|(?:/\*+)(.*?)(?:\*+/)#ms";
+  public $multi_block   = "#\s*\*([^\n]*)#ms";
   public $doc_params    = "#\s(@[^\s]*)#"; 
   
   public $comment_tokens = array("T_COMMENT", "T_DOC_COMMENT");
