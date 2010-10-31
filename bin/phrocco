@@ -6,7 +6,7 @@ exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 require_once("phrocco/Phrocco.php");
 ini_set("error_reporting",247);
 
-if(isset($argv)){
+if(count($argv)>1){
   ob_end_clean();
   $args = getopt("l:i:o:");
   if(!$args["i"]) {echo "** Error: No input file or directory specified\n";die();}
@@ -15,5 +15,21 @@ if(isset($argv)){
   if(substr($args["i"],0,1!="/")) $args["i"] = getcwd()."/".$args["i"];
   if(substr($args["o"],0,1!="/")) $args["o"] = getcwd()."/".$args["o"];
   $group = new PhroccoGroup($args);
+} else {
+  ob_end_clean();
+  $help = <<<HELP
+
+====Phrocco, Annotated Source Documentation for PHP=====
+Command line options:
+  -i <input directory>     Where to look for source code files - Searches recursively
+  -o <output directory>    Root directory to output to
+  -l <language>            Language to parse. Currently PHP only, more to come.
+
+  Examples:
+  phrocco -i ./ -o ./docs
+  
+
+HELP;
+  echo $help;
 }
 

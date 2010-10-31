@@ -13,6 +13,6 @@ $spec = Pearfarm_PackageSpec::create(array(Pearfarm_PackageSpec::OPT_BASEDIR => 
              ->setNotes('Initial release.')
              ->addMaintainer('lead', 'Ross Riley', 'rossriley', 'ross@oneblackbear.com')
              ->addGitFiles("http://github.com/oneblackbear/phrocco")
-             ->addExcludeFiles(array('.gitignore', 'pearfarm.spec'))
+             ->addExcludeFiles(array('.gitignore', '.git', 'pearfarm.spec'))
              ->addExecutable('bin/phrocco')
              ;
