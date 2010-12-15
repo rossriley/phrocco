@@ -16,7 +16,7 @@ class Phrocco {
   public $output_file;
   public $path;
 
-  
+
   public function __construct($language, $file) {
     $this->adapter = ucfirst($language)."Adapter";
     require_once(__DIR__."/lib/adapters/".$this->adapter.".php");
@@ -24,11 +24,11 @@ class Phrocco {
     $this->file = $file;
     $this->title = basename($this->file);
   }
-  
+
   public function parse() {
     $this->sections = $this->adapter->parse($this->file);
   }
-  
+
 
 
   public function render() {
@@ -41,7 +41,7 @@ class Phrocco {
   	if(!include($view_file)) throw new Exception("PHP Error in $view_file");
   	$content = ob_get_contents();
 		ob_end_clean();
-		file_put_contents($this->output_file, $content);    
+		file_put_contents($this->output_file, $content);
   }
 
 
@@ -59,7 +59,7 @@ class PhroccoIterator extends RecursiveDirectoryIterator {
 }
 
 class PhroccoGroup {
-  
+
   public $extensions = array(
     "php" => array("php","phps","phpt")
   );
@@ -71,7 +71,7 @@ class PhroccoGroup {
   );
   public $options = array();
   public $group = array();
-  
+
   public function __construct($options) {
     $sources = array();
     $this->options = $options + $this->defaults;
@@ -89,17 +89,22 @@ class PhroccoGroup {
         if(!is_writable($output_dir)) throw new Exception("Invalid Output Directory - Couldn't Create Because of Permissions");
         $file_out = $output_dir."/".$file->getBasename($iterator->getExtension())."html";
         $phrocco->output_file = $file_out;
-        $phrocco->path = "./".$iterator->getSubPath();
+        $subpath = $iterator->getSubPath();
+        $phrocco->path = (!empty($subpath) ? "./" : '') . $subpath;
         $this->group[$file->getBasename()] = $phrocco;
-        $this->sources[] = array("url"=>$iterator->getSubPath()."/".$file->getBasename($iterator->getExtension())."html", "name"=>$file->getBasename());
+        $subpath .= (!empty($subpath) ? '/' : '');
+        $this->sources[] = array(
+          "url"=>$subpath.$file->getBasename($iterator->getExtension())."html",
+          "name"=>$file->getBasename()
+        );
       }
     }
     foreach($this->group as $name=>$file) {
       $file->sources = $this->sources;
       echo "*** Processing: ".$name."\n";
-      
+
       $file->render();
     }
-    
+
   }
 }
