@@ -5,7 +5,6 @@ exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 require_once("lib/markdown.php");
 require_once("lib/pygment.php");
 
-
 class Phrocco {
 
     public $sources;
@@ -74,7 +73,10 @@ class PhroccoGroup {
         $sources = array();
         $this->options = $options + $this->defaults;
         $dir_iterator = new PhroccoIterator($this->options["i"]);
-        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(
+            $dir_iterator,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
 
         foreach ($iterator as $file) {
             if (
@@ -95,11 +97,13 @@ class PhroccoGroup {
 
                 $file_out = $output_dir."/".$file->getBasename($iterator->getExtension())."html";
                 $phrocco->output_file = $file_out;
-                $phrocco->path = "./".$iterator->getSubPath();
+                $subpath = $iterator->getSubPath();
+                $phrocco->path = (!empty($subpath) ? "./" : '') . $subpath;
                 $this->group[$file->getBasename()] = $phrocco;
+                $subpath .= (!empty($subpath) ? '/' : '');
                 $this->sources[] = array(
-                    "url"=>$iterator->getSubPath()."/".$file->getBasename($iterator->getExtension())."html",
-                    "name"=>$file->getBasename()
+                  "url"=>$subpath.$file->getBasename($iterator->getExtension())."html",
+                  "name"=>$file->getBasename()
                 );
             }
         }

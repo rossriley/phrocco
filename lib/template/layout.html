@@ -15,7 +15,7 @@
                     <div id="jump_page">
                         <?php foreach ($sources as $source): ?>
                             <?php if (substr_count($path, "/")===0): ?>
-                                <?php $href = $source['url']; ?>
+                                <?php $href = './' . $source['url']; ?>
                             <?php else: ?>
                                 <?php $href = str_repeat('../', substr_count($path, '/')) . $source['url']; ?>
                             <?php endif; ?>
