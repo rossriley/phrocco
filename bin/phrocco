@@ -3,7 +3,7 @@ PHP=`which php`
 exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 <?php
 
-require_once("phrocco/phrocco.php");
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'phrocco.php';
 ini_set("error_reporting",247);
 
 if(count($argv)>1){
@@ -27,7 +27,7 @@ Command line options:
 
   Examples:
   phrocco -i ./ -o ./docs
-  
+
 
 HELP;
   echo $help;
