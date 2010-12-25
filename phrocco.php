@@ -27,8 +27,8 @@ class Phrocco {
     public function render() {
         ob_start();
         $this->parse();
-        $view_file = __DIR__."/lib/template/layout.html";
-        $this->style = file_get_contents(__DIR__."/lib/template/layout.css");
+        $view_file = dirname(__FILE__)."/lib/template/layout.html";
+        $this->style = file_get_contents(dirname(__FILE__)."/lib/template/layout.css");
         extract((array)$this);
 
       	if(!is_readable($view_file)) throw new Exception("Unable to find Template File");

@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once dirname(__DIR__) . '/phrocco.php';
+require_once dirname(dirname(__FILE__)) . '/phrocco.php';
 ini_set("error_reporting",247);
 
 if (count($argv)>1) {
