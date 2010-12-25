@@ -1,6 +1,3 @@
-#!/bin/sh
-PHP=`which php`
-exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 <?php
 require_once("lib/markdown.php");
 require_once("lib/pygment.php");
@@ -16,7 +13,7 @@ class Phrocco {
   public $output_file;
   public $path;
 
-  
+
   public function __construct($language, $file) {
     $this->adapter = ucfirst($language)."Adapter";
     require_once(__DIR__."/lib/adapters/".$this->adapter.".php");
@@ -24,11 +21,11 @@ class Phrocco {
     $this->file = $file;
     $this->title = basename($this->file);
   }
-  
+
   public function parse() {
     $this->sections = $this->adapter->parse($this->file);
   }
-  
+
 
 
   public function render() {
@@ -39,9 +36,8 @@ class Phrocco {
     extract((array)$this);
   	if(!is_readable($view_file)) throw new Exception("Unable to find Template File");
   	if(!include($view_file)) throw new Exception("PHP Error in $view_file");
-  	$content = ob_get_contents();
-		ob_end_clean();
-		file_put_contents($this->output_file, $content);    
+  	$content = ob_get_clean();
+		file_put_contents($this->output_file, $content);
   }
 
 
@@ -59,7 +55,7 @@ class PhroccoIterator extends RecursiveDirectoryIterator {
 }
 
 class PhroccoGroup {
-  
+
   public $extensions = array(
     "php" => array("php","phps","phpt")
   );
@@ -71,7 +67,7 @@ class PhroccoGroup {
   );
   public $options = array();
   public $group = array();
-  
+
   public function __construct($options) {
     $sources = array();
     $this->options = $options + $this->defaults;
@@ -97,9 +93,9 @@ class PhroccoGroup {
     foreach($this->group as $name=>$file) {
       $file->sources = $this->sources;
       echo "*** Processing: ".$name."\n";
-      
+
       $file->render();
     }
-    
+
   }
 }
