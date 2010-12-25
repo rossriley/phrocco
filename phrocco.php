@@ -5,7 +5,6 @@ exec $PHP -C -q -d output_buffering=1 "$0" "$@"
 require_once("lib/markdown.php");
 require_once("lib/pygment.php");
 
-
 class Phrocco {
 
   public $sources;
@@ -19,7 +18,7 @@ class Phrocco {
   
   public function __construct($language, $file) {
     $this->adapter = ucfirst($language)."Adapter";
-    require_once(__DIR__."/lib/adapters/".$this->adapter.".php");
+    require_once(dirname(__FILE__)."/lib/adapters/".$this->adapter.".php");
     $this->adapter = new $this->adapter;
     $this->file = $file;
     $this->title = basename($this->file);
@@ -34,8 +33,8 @@ class Phrocco {
   public function render() {
     ob_start();
     $this->parse();
-    $view_file = __DIR__."/lib/template/layout.html";
-    $this->style = file_get_contents(__DIR__."/lib/template/layout.css");
+    $view_file = dirname(__FILE__)."/lib/template/layout.html";
+    $this->style = file_get_contents(dirname(__FILE__)."/lib/template/layout.css");
     extract((array)$this);
   	if(!is_readable($view_file)) throw new Exception("Unable to find Template File");
   	if(!include($view_file)) throw new Exception("PHP Error in $view_file");
@@ -65,7 +64,7 @@ class PhroccoGroup {
   );
   public $language = "php";
   public $defaults = array(
-    "i"   => __DIR__,
+    "i"   => null,
     "l"   => "php",
     "o"   => false
   );
@@ -73,6 +72,7 @@ class PhroccoGroup {
   public $group = array();
   
   public function __construct($options) {
+    $this->default['i'] = dirname(__FILE__);
     $sources = array();
     $this->options = $options + $this->defaults;
     $dir_iterator = new PhroccoIterator($this->options["i"]);
