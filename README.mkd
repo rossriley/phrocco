@@ -1,0 +1,14 @@
+Phrocco
+=======
+
+This is my fork of [Phrocco](http://github.com/oneblackbear/phrocco), a PHP port of [Docco](http://jashkenas.github.com/docco/).
+
+There's a couple of difference with the original one.
+
+* doesn't need to be installed through PEAR, means that you can make an alias of the binary file to use phrocco
+* source code were reformated, to ease the development process (more readable IMO, but it just a matter of taste)
+                  
+Example
+-------
+
+Here's a very basic version of the output you can expect, [WaxUrl.html](http://media.oneblackbear.com.s3.amazonaws.com/WaxUrl.html)
