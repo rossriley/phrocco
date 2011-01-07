@@ -5,7 +5,7 @@ $spec = Pearfarm_PackageSpec::create(array(Pearfarm_PackageSpec::OPT_BASEDIR => 
              ->setChannel('oneblackbear.pearfarm.org')
              ->setSummary('A PHP port of Docco')
              ->setDescription('Now you can have beautiful looking annotated source files for your PHP projects')
-             ->setReleaseVersion('0.2.4')
+             ->setReleaseVersion('0.2.5')
              ->setReleaseStability('beta')
              ->setApiVersion('0.2.4')
              ->setApiStability('beta')

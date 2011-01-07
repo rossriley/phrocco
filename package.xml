@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0         http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd" version="2.0">
+  <name>phrocco</name>
+  <channel>oneblackbear.pearfarm.org</channel>
+  <summary>A PHP port of Docco</summary>
+  <description>Now you can have beautiful looking annotated source files for your PHP projects</description>
+  <lead>
+    <name>Ross Riley</name>
+    <user>rossriley</user>
+    <email>ross@oneblackbear.com</email>
+    <active>yes</active>
+  </lead>
+  <date>2011-01-07</date>
+  <time>11:28:43</time>
+  <version>
+    <release>0.2.5</release>
+    <api>0.2.4</api>
+  </version>
+  <stability>
+    <release>beta</release>
+    <api>beta</api>
+  </stability>
+  <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
+  <notes>Initial release.</notes>
+  <contents>
+    <dir name="/" baseinstalldir="phrocco">
+      <file name="README" role="php" md5sum="b0e5c970465636c51a050ff2b77041b4"/>
+      <dir name="bin">
+        <file name="phrocco" role="script" baseinstalldir="/" md5sum="a1e23c47dd1ff7203d49717a5d26a411">
+          <tasks:replace type="pear-config" from="/usr/bin/env php" to="php_bin"/>
+          <tasks:replace type="pear-config" from="@php_bin@" to="php_bin"/>
+          <tasks:replace type="pear-config" from="@bin_dir@" to="bin_dir"/>
+          <tasks:replace type="pear-config" from="@pear_directory@" to="php_dir"/>
+        </file>
+      </dir>
+      <dir name="lib">
+        <dir name="adapters">
+          <file name="PhpAdapter.php" role="php" md5sum="db242a1bec5d69e1a6418ec9f1b6f515"/>
+        </dir>
+        <file name="markdown.php" role="php" md5sum="4304173b62925319a80e3e385b1527e7"/>
+        <file name="pygment.php" role="php" md5sum="3da01ba92f60af87277fc2fab712f1cf"/>
+        <dir name="template">
+          <file name="layout.css" role="php" md5sum="74d5ab98beb4f8667ab34bf6667b1939"/>
+          <file name="layout.html" role="php" md5sum="4f0f9df3096b57cacf1594d1fb70c32b"/>
+        </dir>
+      </dir>
+      <file name="phrocco.php" role="php" md5sum="3a392d47183e2e3829256b12e7754b0d"/>
+    </dir>
+  </contents>
+  <dependencies>
+    <required>
+      <php>
+        <min>5.0.0</min>
+      </php>
+      <pearinstaller>
+        <min>1.4.0</min>
+      </pearinstaller>
+    </required>
+  </dependencies>
+  <phprelease>
+    <filelist>
+      <install as="phrocco" name="bin/phrocco"/>
+    </filelist>
+  </phprelease>
+</package>
