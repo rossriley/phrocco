@@ -1,6 +1,6 @@
 Phrocco is the start of a port of the rather nice literate documentation generator Docco to PHP
 
-                  <http://jashkenas.github.com/docco/>
+                  http://jashkenas.github.com/docco/
                   
                   
 Alpha at this stage but feel free to take it for a whirl.
@@ -8,3 +8,6 @@ Alpha at this stage but feel free to take it for a whirl.
     pear install oneblackbear.pearfarm.org/phrocco-0.2.4
     
 This will install the phrocco binary, just type phrocco for instructions.
+
+Here's a very basic version of the output you can expect.
+  http://media.oneblackbear.com.s3.amazonaws.com/WaxUrl.html
