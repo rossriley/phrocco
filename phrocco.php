@@ -57,7 +57,8 @@ class PhroccoIterator extends RecursiveDirectoryIterator {
 class PhroccoGroup {
 
   public $extensions = array(
-    "php" => array("php","phps","phpt")
+    "php" => array("php","phps","phpt"),
+    "xml" => array("xml")
   );
   public $language = "php";
   public $defaults = array(
