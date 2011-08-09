@@ -19,7 +19,7 @@ if(count($argv)>1){
 Command line options:
   -i <input directory>     Where to look for source code files - Searches recursively
   -o <output directory>    Root directory to output to
-  -l <language>            Language to parse. Currently PHP only, more to come.
+  -l <language>            Language to parse. Currently PHP and XML only, more to come.
 
   Examples:
   phrocco -i ./ -o ./docs
