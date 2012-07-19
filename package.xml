@@ -10,23 +10,23 @@
     <email>ross@oneblackbear.com</email>
     <active>yes</active>
   </lead>
-  <date>2011-01-07</date>
-  <time>11:28:43</time>
+  <date>2011-12-19</date>
+  <time>23:06:41</time>
   <version>
-    <release>0.2.5</release>
-    <api>0.2.4</api>
+    <release>0.4.0</release>
+    <api>0.4.0</api>
   </version>
   <stability>
     <release>beta</release>
     <api>beta</api>
   </stability>
   <license uri="http://www.opensource.org/licenses/mit-license.html">MIT</license>
-  <notes>Initial release.</notes>
+  <notes>Version 0.4.0.</notes>
   <contents>
     <dir name="/" baseinstalldir="phrocco">
-      <file name="README" role="php" md5sum="b0e5c970465636c51a050ff2b77041b4"/>
+      <file name="README" role="php" md5sum="efc76827f07168fda9e512059cd66a92"/>
       <dir name="bin">
-        <file name="phrocco" role="script" baseinstalldir="/" md5sum="a1e23c47dd1ff7203d49717a5d26a411">
+        <file name="phrocco" role="script" baseinstalldir="/" md5sum="051161fbad917ba4b2455805b3633d33">
           <tasks:replace type="pear-config" from="/usr/bin/env php" to="php_bin"/>
           <tasks:replace type="pear-config" from="@php_bin@" to="php_bin"/>
           <tasks:replace type="pear-config" from="@bin_dir@" to="bin_dir"/>
@@ -36,6 +36,7 @@
       <dir name="lib">
         <dir name="adapters">
           <file name="PhpAdapter.php" role="php" md5sum="db242a1bec5d69e1a6418ec9f1b6f515"/>
+          <file name="XmlAdapter.php" role="php" md5sum="d785a282cd43ccd19651a826ea447e06"/>
         </dir>
         <file name="markdown.php" role="php" md5sum="4304173b62925319a80e3e385b1527e7"/>
         <file name="pygment.php" role="php" md5sum="3da01ba92f60af87277fc2fab712f1cf"/>
@@ -44,7 +45,7 @@
           <file name="layout.html" role="php" md5sum="4f0f9df3096b57cacf1594d1fb70c32b"/>
         </dir>
       </dir>
-      <file name="phrocco.php" role="php" md5sum="3a392d47183e2e3829256b12e7754b0d"/>
+      <file name="phrocco.php" role="php" md5sum="f2a0e60bcb04c4935cab5f1057426421"/>
     </dir>
   </contents>
   <dependencies>
