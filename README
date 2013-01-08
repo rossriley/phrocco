@@ -5,7 +5,9 @@ Phrocco is the start of a port of the rather nice literate documentation generat
                   
 Alpha at this stage but feel free to take it for a whirl.
 
+    pear channel-discover oneblackbear.pearfarm.org
     pear install oneblackbear.pearfarm.org/phrocco-0.2.5
+
     
 This will install the phrocco binary, just type phrocco for instructions.
 
