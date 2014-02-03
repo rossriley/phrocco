@@ -19,7 +19,7 @@
     },
 
     "bin": [
-        "phpunit"
+        "phrocco"
     ],
     "config": {
         "bin-dir": "bin"
