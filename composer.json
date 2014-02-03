@@ -20,11 +20,7 @@
 
     "bin": [
         "phrocco"
-    ],
-    "config": {
-        "bin-dir": "bin"
-    }
-
+    ]
 
 
 }
