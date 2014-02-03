@@ -1,3 +1,4 @@
 .Ds_*
 vendor/
 docs/
+composer.lock
