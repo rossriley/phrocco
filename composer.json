@@ -1,7 +1,7 @@
 {
     "name": "rossriley/phrocco",
     "type": "library",
-    "description": "PHP Handlers for experimental Scalar Object Handlers",
+    "description": "Literate documentation for PHP",
     "license": "MIT",
     "authors": [
         {"name": "Ross Riley","email": "riley.ross@gmail.com"}
