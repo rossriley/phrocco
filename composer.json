@@ -1,0 +1,30 @@
+{
+    "name": "rossriley/phrocco",
+    "type": "library",
+    "description": "PHP Handlers for experimental Scalar Object Handlers",
+    "license": "MIT",
+    "authors": [
+        {"name": "Ross Riley","email": "riley.ross@gmail.com"}
+    ],
+    "require": {
+      "php": ">=5.4.0",
+      "michelf/php-markdown": "1.4.*@dev"
+    },
+
+    "autoload": {
+      "psr-4": {
+        "Phrocco\\": "lib",
+        "Phrocco\\Tests\\": "tests"
+      }
+    },
+
+    "bin": [
+        "phpunit"
+    ],
+    "config": {
+        "bin-dir": "bin"
+    }
+
+
+
+}
