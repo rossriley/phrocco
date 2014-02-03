@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+require_once("vendor/autoload.php");
+
+if(count($argv)>1){
+  $args = getopt("l:i:o:");
+  if(!$args["i"]) {echo "** Error: No input file or directory specified\n";die();}
+  if(!$args["o"]) echo "** No output directory specified, outputting to current directory\n";
+
+  if(substr($args["i"],0,1)!="/") $args["i"] = getcwd()."/".$args["i"];
+  if(substr($args["o"],0,1)!="/") $args["o"] = getcwd()."/".$args["o"];
+  $group = new Phrocco\PhroccoGroup($args);
+  $group->process();
+} else {
+  $help = <<<HELP
+
+====Phrocco, Annotated Source Documentation for PHP=====
+Command line options:
+  -i <input directory>     Where to look for source code files - Searches recursively
+  -o <output directory>    Root directory to output to
+  -l <language>            Language to parse. Currently PHP and XML only, more to come.
+
+  Examples:
+  phrocco -i ./ -o ./docs
+
+
+HELP;
+  echo $help;
+}
+
