@@ -13,19 +13,23 @@
   <div id="container">
     <div id="background"></div>
     <?php if(count($sources)):?>
+      <?$folder = false?>
       <div id="jump_to">
         Jump To &hellip;
         <div id="jump_wrapper">
           <div id="jump_page">
+            <ul>
             <?php foreach($sources as $source):?>
+              <?if(!$folder || $folder !== $source["folder"]):?><li><?=$folder = $source["folder"]?></li><?endif?>
               <?php if(substr_count($path, "/")===0):?>
-                <a class="source" href="./<?=$source["url"]?>">
+                <li><a class="source level_<?=$source["level"]?>" href="./<?=$source["url"]?>">
               <?php else:?>
-              <a class="source" href="<?=str_repeat("../",substr_count($path, "/"))?><?=$source["url"]?>">
+                <li><a class="source level_<?=$source["level"]?>" href="<?=str_repeat("../",substr_count($path, "/"))?><?=$source["url"]?>">
               <?php endif?>
                 <?=$source["name"]?>
-              </a>
+              </a></li>
             <?php endforeach?>
+            </ul>
           </div>
         </div>
       </div>
