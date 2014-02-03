@@ -1,0 +1,14 @@
+<phpunit backupGlobals="true"
+         backupStaticAttributes="false"
+         bootstrap="tests/bootstrap.php"
+         cacheTokens="false"
+         colors="true"
+         strict="false"
+         verbose="false">
+
+  <testsuites>
+    <testsuite name="Phrocco Test Suite">
+      <directory>tests/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
