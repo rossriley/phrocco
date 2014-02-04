@@ -8,6 +8,7 @@ use Phrocco\Pygment;
  *###PHP Adapter Class
  * Its job is to handle php code and create an array of
  * code and comments from a php code file.
+ *
  * @author Ross Riley
  **/
 
@@ -34,8 +35,10 @@ class PhpAdapter
   /**
    *###Main parsing method.
    * Uses the php tokenizer to separate comments from code
+   *
    * @return `array`
-   *    array("code"=>`array of code lines`, "docs"=>`array of doc blocks`)
+   *
+   * `array("code"=>array of code, "docs"=>array of docs)`
    *
    **/
     public function parse($file)

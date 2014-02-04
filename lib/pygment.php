@@ -6,7 +6,7 @@ namespace Phrocco;
  *
  *###Pygment parser class.
  *
- * This class simply proxies to two possible handlers, a local install of the Pygmentize gem.
+ * This class simply proxies to two possible handlers, a local install of the Pygmentize gem or a remote webservice.
  *
  * If the command line option is unavailable then it gets delegated to a web service.
  * Obviously using the web service will require a net connection and may slow down the processing time.
@@ -21,11 +21,11 @@ class Pygment
      * This is the main method that returns the processed code, and decides whether to use
      * a local gem or a remote web service.
      *
-     * @param string $language - The language parser to pass to pygmentize.
+     * @param `string` $language - The language parser to pass to pygmentize.
      *
-     * @param string $code - The code to process
+     * @param `string` $code - The code to process
      *
-     * @return void
+     * @return `void`
      **/
     public function pygmentize($language, $code)
     {
@@ -39,7 +39,7 @@ class Pygment
      *### Use Local Gem
      * If the pygmentize gem is available locally then we use this to parse the code.
      *
-     * @return string $parsed_code
+     * @return `string` $parsed_code
      **/
     public function local_pygment($language, $code)
     {
@@ -70,7 +70,7 @@ class Pygment
      *### Use Web Service
      * If the pygmentize gem is not available locally then we use a remote web serivce as a fallback.
      *
-     * @return string $parsed_code
+     * @return `string` $parsed_code
      **/
     public function webservice($language, $code)
     {

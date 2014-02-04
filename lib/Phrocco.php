@@ -17,34 +17,34 @@ class Phrocco
      *####Class Variables
      * Sections array is the main storage for code mapped to documentation.
      *
-     * @var array
+     * @var `array`
      **/
     public $sections = array();
 
     /**
      * Gets passed into the template file to become the HTML page title.
      *
-     * @var string
+     * @var `string`
      **/
     public $title;
 
     /**
      * The file that we will operate on.
      *
-     * @var string
+     * @var `string`
      **/
     public $file;
 
     /**
      * This is primarily for internal use, storing a reference to the adapter class that will handle conversion.
      *
-     * @var Object
+     * @var `Object`
      **/
     public $adapter;
 
     /**
      * The output file that the final html doc file will be written to.
-     * @var string
+     * @var `string`
      **/
     public $output_file;
 
@@ -53,22 +53,22 @@ class Phrocco
      *
      * Pass in standalone template files / css files to change the way the documentation looks.
      *
-     * @var string
+     * @var `string`
      **/
     public $layoutFile = false;
     public $stylesheetFile = false;
 
     /**
      *###Class Constructor
-     * @param string $language Defaults to PHP
+     * @param `string` $language Defaults to PHP
      *
-     * @param string $file The language file to parse
+     * @param `string` $file The language file to parse
      *
-     * @param array  $options Pass in a custom title, template or stylesheet
+     * @param `array`  $options Pass in a custom title, template or stylesheet
      *
-     *  `$phrocco = new Phrocco("php","test.php", ["title"=>"Example Doc File"]);`
+     * eg: `$phrocco = new Phrocco("php","test.php", ["title"=>"Example Doc File"]);`
      *
-     * @return void
+     * @return `void`
      **/
 
     public function __construct($language, $file, $options = array())
@@ -94,7 +94,7 @@ class Phrocco
     /**
      * Proxies the parsing responsibility to the selected adapter.
      *
-     * @return void
+     * @return `void`
      **/
 
     public function parse()
@@ -109,7 +109,7 @@ class Phrocco
      * By this point the sections array will be populated with either side of the Comment / Code divide.
      * This method includes the template file and writes the final buffer to the output file.
      *
-     * @return void
+     * @return `void`
      **/
     public function write($content)
     {
@@ -123,7 +123,7 @@ class Phrocco
      * By this point the sections array will be populated with either side of the Comment / Code divide.
      * This method includes the template file and returns the generated content ready to write to file.
      *
-     * @return string $output
+     * @return `string` $output
      **/
     public function render()
     {

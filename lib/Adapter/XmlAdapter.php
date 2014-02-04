@@ -4,7 +4,7 @@ namespace Phrocco\Adapter;
 use Michelf\Markdown;
 
 /**
- *###XML Adapter Class
+ *###XML Adapter Class - Experimental
  * Its job is to handle XML code and create an array of
  * code and comments from a XML file.
  * @author Kasper Garnæs
@@ -15,7 +15,7 @@ class XmlAdapter
 
     /**
     * Main parsing method.
-    * Uses the php tokenizer to separate comments from code
+    * Splits on patterns to separate comments from code
     * @return `array`
     *    array("code"=>`array of code lines`, "docs"=>`array of doc blocks`)
     **/
