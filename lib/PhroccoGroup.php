@@ -105,10 +105,15 @@ class PhroccoGroup
         }
 
 
-        /**
-        *### Final File renders
-        * Iterates over all found files and calls on the Phrocco class to render each file.
-        */
+
+
+    }
+
+    /**
+     *### Final File renders
+     * Iterates over all found files and calls on the Phrocco class to render each file.
+     */
+    public function write() {
         foreach($this->group as $name=>$file) {
             $file->sources = $this->sources;
             echo "*** Processing: ".$name."\n";

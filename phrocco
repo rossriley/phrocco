@@ -16,6 +16,7 @@ if(count($argv)>1){
   if(substr($args["o"],0,1)!="/") $args["o"] = getcwd()."/".$args["o"];
   $group = new Phrocco\PhroccoGroup($args);
   $group->process();
+  $group->write();
 } else {
   $help = <<<HELP
 
