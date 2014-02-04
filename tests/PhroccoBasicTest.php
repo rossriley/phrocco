@@ -12,8 +12,6 @@ class PhroccoBasicTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test of the basic class loader. This description also performs a use as a test comment.
-     *
-     * @return void
      **/
 
     public function testLoad()
@@ -22,7 +20,8 @@ class PhroccoBasicTest extends \PHPUnit_Framework_TestCase
         $test->parse();
         $this->assertTrue(count($test->sections["code"])>0);
         $this->assertTrue(count($test->sections["docs"])>0);
-        print_r($test); exit;
+        $this->assertEquals($test->title, "PhroccoBasicTest.php");
+        $this->assertStringStartsWith("<p>Test of the basic class loader.", $test->sections["docs"][0]);
     }
 
 }
