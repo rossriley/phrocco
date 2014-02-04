@@ -5,13 +5,14 @@ Phrocco is the start of a port of the rather nice literate documentation generat
     http://jashkenas.github.com/docco/
 
 
+### Installing
+
+Best done via composer global.
+
+    composer global require rossriley/phrocco:dev-master
+
+This will install the binary to ~/.composer/vendor/bin/phrocco.
+
 The project is in alpha at this stage but feedback and pull requests are welcome.
 
-    pear channel-discover oneblackbear.pearfarm.org
-    pear install oneblackbear.pearfarm.org/phrocco-0.2.5
-
-
-This will install the phrocco binary, just type phrocco for instructions.
-
-Here's a very basic version of the output you can expect.
-  http://media.oneblackbear.com.s3.amazonaws.com/WaxUrl.html
+Also check out the front end site http://phrocco.info/ for more instructions and example output.
