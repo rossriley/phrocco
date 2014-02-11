@@ -10,7 +10,7 @@ use Michelf\Markdown;
  * @author Kasper Garnæs
  **/
 
-class XmlAdapter
+class XmlAdapter implements AdapterInterface
 {
 
     /**

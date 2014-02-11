@@ -25,4 +25,11 @@ class PhroccoBasicTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf("Phrocco\\Adapter\\PhpAdapter", $test->adapter);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidAdapter()
+    {
+        new Phrocco('Invalid', __FILE__);
+    }
 }

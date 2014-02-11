@@ -1,6 +1,8 @@
 <?php
 namespace Phrocco;
 
+use Phrocco\Adapter\AdapterInterface;
+
 /**
  *###Phrocco main manager class.
  *
@@ -38,12 +40,13 @@ class Phrocco
     /**
      * This is primarily for internal use, storing a reference to the adapter class that will handle conversion.
      *
-     * @var `Object`
+     * @var `AdapterInterface`
      **/
     public $adapter;
 
     /**
      * The output file that the final html doc file will be written to.
+     *
      * @var `string`
      **/
     public $output_file;
@@ -57,6 +60,16 @@ class Phrocco
      **/
     public $layoutFile = false;
     public $stylesheetFile = false;
+
+    /**
+     *#### Available adapter types.
+     *
+     * @var array
+     */
+    protected static $adapterTypes = [
+        'php' => 'Phrocco\Adapter\PhpAdapter',
+        'xml' => 'Phrocco\Adapter\XmlAdapter'
+    ];
 
     /**
      *###Class Constructor
@@ -73,8 +86,8 @@ class Phrocco
 
     public function __construct($language, $file, $options = array())
     {
-        $classname = "Phrocco\\Adapter\\".ucfirst($language)."Adapter";
-        $this->adapter = new $classname;
+        $this->adapter = $this->createAdapter($language);
+
         $this->file = $file;
         if(isset($options["title"])) {
             $this->title = $options["title"];
@@ -144,6 +157,27 @@ class Phrocco
         return $content;
     }
 
+    /**
+     *###Create adapter by type.
+     *
+     * @param `string` $type
+     *
+     * @return `AdapterInterface`
+     *
+     * @throws `InvalidArgumentException` if adapter type is not available.
+     */
+    protected function createAdapter($type)
+    {
+        if (!isset(static::$adapterTypes[$type])) {
+            throw new \InvalidArgumentException(
+                sprintf('Adapter type "%s" is not available.', $type)
+            );
+        }
+
+        $adapterClass = new static::$adapterTypes[$type];
+
+        return new $adapterClass;
+    }
 
 }
 
