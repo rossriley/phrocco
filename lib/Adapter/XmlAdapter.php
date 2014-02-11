@@ -2,6 +2,7 @@
 namespace Phrocco\Adapter;
 
 use Michelf\Markdown;
+use Phrocco\Pygment;
 
 /**
  *###XML Adapter Class - Experimental

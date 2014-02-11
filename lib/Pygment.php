@@ -44,25 +44,30 @@ class Pygment
     public function local_pygment($language, $code)
     {
         // Map the input output to stdin / stdout.
-        $descriptorspec = array(
+        $descriptorSpec = array(
             0 => array("pipe", "r"),
             1 => array("pipe", "w"),
         );
 
-        $process = proc_open("pygmentize -l $language -f html", $descriptorspec, $pipes);
+        $process = proc_open("pygmentize -l $language -f html", $descriptorSpec, $pipes);
 
         if (is_resource($process)) {
-            fwrite($pipes[0], ($code));
+            fwrite($pipes[0], $code);
             fclose($pipes[0]);
+
+            $parsed_code = '';
 
             while($s= fgets($pipes[1], 1024)) {
                 // Read from the pipe and append the output to `$parsed_code`
                 $parsed_code .= $s;
             }
+
             fclose($pipes[1]);
+
+            return $parsed_code;
         }
 
-        return $parsed_code;
+        return null;
     }
 
 
