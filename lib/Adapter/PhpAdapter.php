@@ -12,7 +12,7 @@ use Phrocco\Pygment;
  * @author Ross Riley
  **/
 
-class PhpAdapter
+class PhpAdapter implements AdapterInterface
 {
     // Regular Expression to find strip out all type of comments characters
     public $comment_blocks = array(
