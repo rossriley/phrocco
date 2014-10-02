@@ -42,7 +42,6 @@ class PhroccoGroup
      **/
     public function __construct($options)
     {
-        $sources = array();
         $this->options = $options + $this->defaults;
     }
 
@@ -59,6 +58,7 @@ class PhroccoGroup
         $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::SELF_FIRST);
 
         foreach ($iterator as $file) {
+            /** @var \SplFileInfo $file */
             if(!$iterator->isDot() && in_array($iterator->getExtension(), $this->extensions[$this->options["l"]])) {
 
                 $base_path = $this->options["i"];
@@ -78,7 +78,7 @@ class PhroccoGroup
                 if(!is_writable($output_dir)) {
                     try {
                         mkdir($output_dir, 0777, true);
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         if(!is_writable($output_dir)) throw new \Exception("Invalid Output Directory - Couldn't Create Because of Permissions");
                     }
                 }

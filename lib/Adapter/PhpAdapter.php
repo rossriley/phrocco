@@ -43,11 +43,9 @@ class PhpAdapter implements AdapterInterface
    **/
     public function parse($file)
     {
-        $fname = $file;
         $file = file_get_contents($file);
         $code = "";
         $all_matches = array();
-        $prev_token = false;
 
 
        /*  This is the main parsing technique. It splits a php file into two arrays of comments
@@ -70,7 +68,6 @@ class PhpAdapter implements AdapterInterface
                     $code.=$tok[1];
                 }
             } else $code.=$tok;
-            $prev_token = $tok;
         }
 
         // Passes code onto pygmentize to add syntax highlighting
