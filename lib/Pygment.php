@@ -52,17 +52,18 @@ class Pygment
         $process = proc_open("pygmentize -l $language -f html", $descriptorspec, $pipes);
 
         if (is_resource($process)) {
+            $parsedCode = "";
             fwrite($pipes[0], ($code));
             fclose($pipes[0]);
 
             while($s= fgets($pipes[1], 1024)) {
-                // Read from the pipe and append the output to `$parsed_code`
-                $parsed_code .= $s;
+                // Read from the pipe and append the output to `$parsedCode`
+                $parsedCode .= $s;
             }
             fclose($pipes[1]);
         }
 
-        return $parsed_code;
+        return $parsedCode;
     }
 
 
