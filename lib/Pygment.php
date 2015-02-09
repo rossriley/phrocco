@@ -51,6 +51,8 @@ class Pygment
 
         $process = proc_open("pygmentize -l $language -f html", $descriptorspec, $pipes);
 
+        $parsed_code = '';
+
         if (is_resource($process)) {
             $parsedCode = "";
             fwrite($pipes[0], ($code));
